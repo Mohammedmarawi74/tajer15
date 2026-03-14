@@ -14,6 +14,7 @@ import PreviewCard from "./components/PreviewCard";
 import Sidebar from "./components/Sidebar";
 import CustomizationPanel from "./components/CustomizationPanel";
 
+// Al-Tajer Digital Default Theme - Electric Blue & Mint Green
 const DEFAULT_DATA: InfographicData = {
   headerImage:
     "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1200",
@@ -26,10 +27,10 @@ const DEFAULT_DATA: InfographicData = {
   eventLocation: 'معرض "جرينتك" - أمستردام',
   eventDate: "يونيو 2025م",
   colors: {
-    primary: "#006747",
-    secondary: "#ffb800",
-    background: "#fcfdfc",
-    text: "#111827",
+    primary: "#2563EB",      /* Electric Blue - Al-Tajer Digital Primary */
+    secondary: "#10B981",    /* Mint Green - Al-Tajer Digital Secondary */
+    background: "#FFFFFF",   /* White Background */
+    text: "#4B5563",         /* Dark Gray - Body Text */
   },
   goals: [
     { id: "1", text: "بناء الشراكات وتبادل الخبرات", icon: "handshake" },
@@ -182,7 +183,7 @@ const App: React.FC = () => {
             </div>
             <div>
               <h1 className="sidebar-title">مُصمم الكاروسيل</h1>
-              <span className="sidebar-version">Professional v2.0</span>
+              <span className="sidebar-version">Al-Tajer Digital v3.0</span>
             </div>
           </div>
           <button

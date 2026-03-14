@@ -1,14 +1,13 @@
-
 import React from 'react';
-import { 
-  Handshake, 
-  TrendingUp, 
-  Target, 
-  Search, 
-  Calendar, 
-  MapPin, 
-  Globe, 
-  Twitter 
+import {
+  Handshake,
+  TrendingUp,
+  Target,
+  Search,
+  Calendar,
+  MapPin,
+  Globe,
+  Twitter
 } from 'lucide-react';
 import { InfographicData, LogoPosition } from '../types';
 
@@ -17,10 +16,10 @@ interface PreviewCardProps {
 }
 
 const IconMap: Record<string, React.ReactNode> = {
-  handshake: <Handshake size={32} />,
-  growth: <TrendingUp size={32} />,
-  investment: <Target size={32} />,
-  search: <Search size={32} />,
+  handshake: <Handshake size={28} />,
+  growth: <TrendingUp size={28} />,
+  investment: <Target size={28} />,
+  search: <Search size={28} />,
 };
 
 const PreviewCard: React.FC<PreviewCardProps> = ({ data }) => {
@@ -29,7 +28,7 @@ const PreviewCard: React.FC<PreviewCardProps> = ({ data }) => {
       case 'top-left': return 'top-6 left-6';
       case 'bottom-right': return 'bottom-6 right-6';
       case 'bottom-left': return 'bottom-6 left-6';
-      case 'top-right': 
+      case 'top-right':
       default: return 'top-6 right-6';
     }
   };
@@ -42,8 +41,8 @@ const PreviewCard: React.FC<PreviewCardProps> = ({ data }) => {
   } as React.CSSProperties;
 
   return (
-    <div 
-      className="poster-root font-ibm" 
+    <div
+      className="poster-root font-ibm"
       style={{ ...themeStyles, backgroundColor: 'var(--background)' }}
     >
       {/* Custom Styles Injection */}
@@ -52,31 +51,31 @@ const PreviewCard: React.FC<PreviewCardProps> = ({ data }) => {
       {/* Logo Overlay */}
       {data.logoUrl && (
         <div className={`poster-logo ${getLogoPositionClass(data.logoPosition)}`}>
-          <img 
-            src={data.logoUrl} 
-            alt="Logo" 
+          <img
+            src={data.logoUrl}
+            alt="Logo"
           />
         </div>
       )}
 
       {/* Header Image */}
       <div className="poster-image-container">
-        <img 
-          src={data.headerImage} 
-          alt="Event" 
+        <img
+          src={data.headerImage}
+          alt="Event"
           className="poster-image"
         />
-        {/* Curved Overlay for Title */}
-        <div 
+        {/* Modern Curved Overlay with Gradient */}
+        <div
           className="poster-curve"
-          style={{ backgroundColor: 'var(--primary)' }}
+          style={{ background: `linear-gradient(180deg, ${data.colors.primary}EE 0%, ${data.colors.primary}CC 100%)` }}
         ></div>
       </div>
 
-      {/* Main Title Section */}
-      <div 
+      {/* Main Title Section - Modern Gradient Card */}
+      <div
         className="poster-content"
-        style={{ backgroundColor: 'var(--primary)', color: 'white' }}
+        style={{ background: `linear-gradient(135deg, ${data.colors.primary} 0%, ${data.colors.primary}DD 100%)` }}
       >
         <h2 className="poster-headline">
           {data.mainTitle}
@@ -86,15 +85,15 @@ const PreviewCard: React.FC<PreviewCardProps> = ({ data }) => {
         </p>
       </div>
 
-      {/* Info Bar */}
+      {/* Info Bar - Modern Pill Design */}
       <div className="poster-infobar">
         <div className="infobar-item">
-          <Calendar size={18} style={{ color: 'var(--primary)' }} />
+          <Calendar size={18} style={{ color: data.colors.primary }} />
           <span>{data.eventDate}</span>
         </div>
         <div className="infobar-divider"></div>
         <div className="infobar-item">
-          <MapPin size={18} style={{ color: 'var(--primary)' }} />
+          <MapPin size={18} style={{ color: data.colors.primary }} />
           <span>{data.eventLocation}</span>
         </div>
       </div>
@@ -102,26 +101,26 @@ const PreviewCard: React.FC<PreviewCardProps> = ({ data }) => {
       {/* Goals Section */}
       <div className="poster-section-goals">
         <div className="section-title-wrapper">
-            <h3 
+            <h3
               className="poster-section-title"
-              style={{ color: 'var(--primary)', borderColor: 'var(--primary)' }}
+              style={{ color: data.colors.primary, borderColor: data.colors.primary }}
             >
               الأهداف
             </h3>
         </div>
-        
+
         <div className="goals-grid">
           {data.goals.map((goal) => (
             <div key={goal.id} className="poster-goal-item">
-              <div 
+              <div
                 className="poster-goal-icon"
-                style={{ color: 'var(--secondary)' }}
+                style={{ background: `linear-gradient(135deg, ${data.colors.primary} 0%, ${data.colors.secondary} 100%)` }}
               >
                 {IconMap[goal.icon] || IconMap.search}
               </div>
-              <p 
+              <p
                 className="poster-goal-text"
-                style={{ color: 'var(--text)' }}
+                style={{ color: data.colors.text }}
               >
                 {goal.text}
               </p>
@@ -133,24 +132,24 @@ const PreviewCard: React.FC<PreviewCardProps> = ({ data }) => {
       {/* Entities Section */}
       <div className="poster-section-entities">
         <div className="section-title-wrapper">
-            <h3 
+            <h3
               className="poster-section-title"
-              style={{ color: 'var(--primary)', borderColor: 'var(--primary)' }}
+              style={{ color: data.colors.primary, borderColor: data.colors.primary }}
             >
               الجهات المنضمة
             </h3>
         </div>
-        
+
         <div className="entities-grid">
           {data.entities.map((entity) => (
             <div key={entity.id} className="poster-entity-item">
-              <div 
+              <div
                 className="poster-entity-dot"
-                style={{ backgroundColor: 'var(--secondary)' }}
+                style={{ background: `linear-gradient(135deg, ${data.colors.primary} 0%, ${data.colors.secondary} 100%)` }}
               ></div>
-              <span 
+              <span
                 className="poster-entity-text"
-                style={{ color: 'var(--text)' }}
+                style={{ color: data.colors.text }}
               >
                 {entity.name}
               </span>
@@ -160,24 +159,24 @@ const PreviewCard: React.FC<PreviewCardProps> = ({ data }) => {
       </div>
 
       {/* Footer Section */}
-      <div 
+      <div
         className="poster-footer"
         style={{ backgroundColor: 'var(--background)' }}
       >
         <div className="footer-branding">
           <div className="branding-content">
              <div className="branding-text-block">
-                <div 
+                <div
                   className="mewa-title"
-                  style={{ color: 'var(--primary)' }}
+                  style={{ color: data.colors.primary }}
                 >
                   وزارة البيئة والمياه والزراعة
                 </div>
                 <div className="mewa-subtitle">Kingdom of Saudi Arabia</div>
              </div>
-             <div 
+             <div
                 className="mewa-logo-placeholder"
-                style={{ backgroundColor: 'var(--primary)' }}
+                style={{ background: `linear-gradient(135deg, ${data.colors.primary} 0%, ${data.colors.primary}DD 100%)` }}
              >
                 <div className="logo-inner-circle"></div>
              </div>
@@ -186,23 +185,26 @@ const PreviewCard: React.FC<PreviewCardProps> = ({ data }) => {
 
         <div className="footer-links">
           <div className="footer-link-item">
-            <Globe size={16} style={{ color: 'var(--primary)' }} />
+            <Globe size={16} style={{ color: data.colors.primary }} />
             <span>{data.footerWebsite}</span>
           </div>
           <div className="footer-link-item">
-            <Twitter size={16} style={{ color: 'var(--primary)' }} />
+            <Twitter size={16} style={{ color: data.colors.primary }} />
             <span>{data.footerSocial}</span>
           </div>
         </div>
       </div>
 
-      {/* Custom Bottom Footer */}
+      {/* Custom Bottom Footer - Al-Tajer Digital Branding */}
       <div className="design-custom-footer">
         <div className="custom-footer-content">
-          <span className="footer-text-left">al_investor.com</span>
-          <span className="footer-text-right">منصة المستثمر</span>
+          <span className="footer-text-left">Al-Tajer Digital</span>
+          <span className="footer-text-right">منصة التاجر الرقمية</span>
         </div>
-        <div className="footer-accent-strip" style={{ backgroundColor: 'var(--primary)' }}></div>
+        <div 
+          className="footer-accent-strip" 
+          style={{ background: `linear-gradient(90deg, ${data.colors.primary} 0%, ${data.colors.secondary} 50%, #8B5CF6 100%)` }}
+        ></div>
       </div>
     </div>
   );
