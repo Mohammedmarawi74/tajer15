@@ -78,31 +78,45 @@ const App: React.FC = () => {
 
     setIsExporting(true);
     try {
+      // Ensure all images are loaded and fonts are ready
       await document.fonts.ready;
+      
+      const node = previewRef.current;
+      
+      // Fix for some browsers: ensure the node has a fixed width for the snapshot
+      const originalWidth = node.style.width;
+      node.style.width = '500px';
+
       const options = {
         quality: 1,
-        pixelRatio: 3,
-        skipFonts: false,
-        fontEmbedCSS: undefined,
+        pixelRatio: 4, // Higher quality
         cacheBust: true,
+        backgroundColor: '#ffffff',
         style: {
-          transform: "scale(1)",
-          transformOrigin: "top left",
-        },
-        filter: (node: HTMLElement) => {
-          const exclusionClasses = ["no-print"];
-          return !exclusionClasses.some((cls) => node.classList?.contains(cls));
-        },
+          borderRadius: '0', // Remove border radius for the export if needed
+        }
       };
-      const dataUrl = await htmlToImage.toPng(previewRef.current, options);
-      const link = document.createElement("a");
-      link.download = `infographic-${Date.now()}.png`;
-      link.href = dataUrl;
-      link.click();
+
+      // Use to Blob and then Create URL for better compatibility with large images
+      const blob = await htmlToImage.toBlob(node, options);
+      
+      // Revert style
+      node.style.width = originalWidth;
+
+      if (blob) {
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.download = `tajer-design-${Date.now()}.png`;
+        link.href = url;
+        link.click();
+        
+        // Cleanup
+        setTimeout(() => URL.revokeObjectURL(url), 100);
+      }
     } catch (err) {
       console.error("Export failed:", err);
       alert(
-        "حدث خطأ أثناء التصدير. يرجى التأكد من استقرار اتصال الإنترنت لمحرك الخطوط.",
+        "حدث خطأ أثناء التصدير. يرجى تجربة متصفح آخر أو التأكد من استقرار الإنترنت.",
       );
     } finally {
       setIsExporting(false);

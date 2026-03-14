@@ -54,6 +54,7 @@ const PreviewCard: React.FC<PreviewCardProps> = ({ data }) => {
           <img
             src={data.logoUrl}
             alt="Logo"
+            crossOrigin="anonymous"
           />
         </div>
       )}
@@ -64,6 +65,7 @@ const PreviewCard: React.FC<PreviewCardProps> = ({ data }) => {
           src={data.headerImage}
           alt="Event"
           className="poster-image"
+          crossOrigin="anonymous"
         />
         {/* Modern Curved Overlay with Gradient */}
         <div
@@ -159,47 +161,13 @@ const PreviewCard: React.FC<PreviewCardProps> = ({ data }) => {
       </div>
 
       {/* Footer Section */}
-      <div
-        className="poster-footer"
-        style={{ backgroundColor: 'var(--background)' }}
-      >
-        <div className="footer-branding">
-          <div className="branding-content">
-             <div className="branding-text-block">
-                <div
-                  className="mewa-title"
-                  style={{ color: data.colors.primary }}
-                >
-                  وزارة البيئة والمياه والزراعة
-                </div>
-                <div className="mewa-subtitle">Kingdom of Saudi Arabia</div>
-             </div>
-             <div
-                className="mewa-logo-placeholder"
-                style={{ background: `linear-gradient(135deg, ${data.colors.primary} 0%, ${data.colors.primary}DD 100%)` }}
-             >
-                <div className="logo-inner-circle"></div>
-             </div>
-          </div>
-        </div>
-
-        <div className="footer-links">
-          <div className="footer-link-item">
-            <Globe size={16} style={{ color: data.colors.primary }} />
-            <span>{data.footerWebsite}</span>
-          </div>
-          <div className="footer-link-item">
-            <Twitter size={16} style={{ color: data.colors.primary }} />
-            <span>{data.footerSocial}</span>
-          </div>
-        </div>
-      </div>
+ 
 
       {/* Custom Bottom Footer - Al-Tajer Digital Branding */}
       <div className="design-custom-footer">
         <div className="custom-footer-content">
-          <span className="footer-text-left">Al-Tajer Digital</span>
           <span className="footer-text-right">منصة التاجر الرقمية</span>
+          <span className="footer-text-left">dtajer.com</span>
         </div>
         <div 
           className="footer-accent-strip" 
